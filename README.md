@@ -129,7 +129,7 @@ cp .env.example .env
 | `VITE_STELLAR_NETWORK` | Stellar network (`TESTNET` or `PUBLIC`) | `TESTNET` |
 | `VITE_HORIZON_URL` | Horizon API endpoint | `https://horizon-testnet.stellar.org` |
 | `VITE_SOROBAN_RPC_URL` | Soroban RPC endpoint | `https://soroban-testnet.stellar.org` |
-| `VITE_CONTRACT_ID` | Deployed Soroban contract ID | `CCQXDJI3PJPGLZNZN7OGQG4CKODJQKXOKBAXNPCLBJYRR5A4EUREZADT` |
+| `VITE_CONTRACT_ID` | Deployed Soroban contract ID | `CDMFGNFKQOJ3IRFN7GYL2B6242TWQX3JXLUHUZB3CLK2HNUT7VLYMNVN` |
 | `VITE_APP_NAME` | Application name | `OrbitSwap` |
 | `VITE_APP_URL` | Application URL | `http://localhost:3000` |
 
