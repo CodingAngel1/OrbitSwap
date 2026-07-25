@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-orbit-border;
+  }
+
+  body {
+    @apply bg-orbit-dark text-white font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    @apply bg-stellar-500/30 text-white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-orbit-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-stellar-500/50;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-orbit-card/80 backdrop-blur-xl border border-orbit-border/50 rounded-2xl shadow-xl;
+  }
+
+  .glass-input {
+    @apply bg-orbit-darker/80 border border-orbit-border rounded-xl px-4 py-3 text-white
+           placeholder-gray-500 focus:outline-none focus:border-stellar-500 focus:ring-1
+           focus:ring-stellar-500/50 transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-stellar-600 to-stellar-500 hover:from-stellar-500
+           hover:to-stellar-400 text-white font-semibold rounded-xl px-6 py-3
+           transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed
+           focus:outline-none focus:ring-2 focus:ring-stellar-500/50 active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply bg-orbit-card border border-orbit-border hover:border-stellar-500/50
+           text-white font-medium rounded-xl px-6 py-3 transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none
+           focus:ring-2 focus:ring-stellar-500/50 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply text-gray-400 hover:text-white hover:bg-white/5 rounded-xl px-4 py-2
+           transition-all duration-200 focus:outline-none focus:ring-2
+           focus:ring-stellar-500/50;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+
+  .badge-success {
+    @apply badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20;
+  }
+
+  .badge-error {
+    @apply badge bg-red-500/10 text-red-400 border border-red-500/20;
+  }
+
+  .badge-warning {
+    @apply badge bg-amber-500/10 text-amber-400 border border-amber-500/20;
+  }
+
+  .badge-info {
+    @apply badge bg-blue-500/10 text-blue-400 border border-blue-500/20;
+  }
+
+  .skeleton {
+    @apply animate-pulse bg-orbit-border/50 rounded-lg;
+  }
+
+  .tooltip {
+    @apply absolute z-50 px-3 py-2 text-sm bg-gray-900 text-white rounded-lg shadow-xl
+           border border-orbit-border pointer-events-none opacity-0 transition-opacity
+           duration-200;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-stellar-400 via-orbit-purple to-orbit-cyan bg-clip-text text-transparent;
+  }
+}
