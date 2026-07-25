@@ -26,8 +26,6 @@
 
 OrbitSwap is a production-ready decentralized token swap application built on the **Stellar** network. Users can securely connect multiple Stellar wallets, browse supported assets, inspect Stellar DEX market information, interact with deployed Soroban smart contracts, execute token swaps, monitor transaction progress, and receive live blockchain updates through a responsive modern interface.
 
-This project satisfies **100% of the Rise In Stellar Builder Challenge – Level 2 (Yellow Belt)** requirements.
-
 ---
 
 ## Features
@@ -47,17 +45,17 @@ This project satisfies **100% of the Rise In Stellar Builder Challenge – Level
 
 ## Technology Stack
 
-| Layer | Technologies |
-|-------|-------------|
-| **Frontend** | React 18, TypeScript, Vite, Tailwind CSS |
-| **Blockchain** | Stellar SDK, Soroban SDK |
-| **Wallets** | StellarWalletsKit (Freighter, xBull, Albedo, Rabet, LOBSTR) |
-| **Smart Contract** | Soroban (Rust), deployed on Stellar Testnet |
-| **State** | Zustand |
-| **Routing** | React Router v6 |
-| **Testing** | Vitest, React Testing Library |
-| **Linting** | ESLint, Prettier |
-| **Build** | Vite |
+| Layer              | Technologies                                                |
+| ------------------ | ----------------------------------------------------------- |
+| **Frontend**       | React 18, TypeScript, Vite, Tailwind CSS                    |
+| **Blockchain**     | Stellar SDK, Soroban SDK                                    |
+| **Wallets**        | StellarWalletsKit (Freighter, xBull, Albedo, Rabet, LOBSTR) |
+| **Smart Contract** | Soroban (Rust), deployed on Stellar Testnet                 |
+| **State**          | Zustand                                                     |
+| **Routing**        | React Router v6                                             |
+| **Testing**        | Vitest, React Testing Library                               |
+| **Linting**        | ESLint, Prettier                                            |
+| **Build**          | Vite                                                        |
 
 ---
 
@@ -124,14 +122,14 @@ cp .env.example .env
 
 ### Environment Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `VITE_STELLAR_NETWORK` | Stellar network (`TESTNET` or `PUBLIC`) | `TESTNET` |
-| `VITE_HORIZON_URL` | Horizon API endpoint | `https://horizon-testnet.stellar.org` |
-| `VITE_SOROBAN_RPC_URL` | Soroban RPC endpoint | `https://soroban-testnet.stellar.org` |
-| `VITE_CONTRACT_ID` | Deployed Soroban contract ID | `CDMFGNFKQOJ3IRFN7GYL2B6242TWQX3JXLUHUZB3CLK2HNUT7VLYMNVN` |
-| `VITE_APP_NAME` | Application name | `OrbitSwap` |
-| `VITE_APP_URL` | Application URL | `http://localhost:3000` |
+| Variable               | Description                             | Default                                                    |
+| ---------------------- | --------------------------------------- | ---------------------------------------------------------- |
+| `VITE_STELLAR_NETWORK` | Stellar network (`TESTNET` or `PUBLIC`) | `TESTNET`                                                  |
+| `VITE_HORIZON_URL`     | Horizon API endpoint                    | `https://horizon-testnet.stellar.org`                      |
+| `VITE_SOROBAN_RPC_URL` | Soroban RPC endpoint                    | `https://soroban-testnet.stellar.org`                      |
+| `VITE_CONTRACT_ID`     | Deployed Soroban contract ID            | `CDMFGNFKQOJ3IRFN7GYL2B6242TWQX3JXLUHUZB3CLK2HNUT7VLYMNVN` |
+| `VITE_APP_NAME`        | Application name                        | `OrbitSwap`                                                |
+| `VITE_APP_URL`         | Application URL                         | `http://localhost:3000`                                    |
 
 ### Running Locally
 
@@ -189,13 +187,13 @@ Deployed on [Vercel](https://vercel.com).
 
 OrbitSwap supports **5 Stellar wallets** through StellarWalletsKit:
 
-| Wallet | Installation |
-|--------|-------------|
+| Wallet        | Installation                                |
+| ------------- | ------------------------------------------- |
 | **Freighter** | [freighter.app](https://www.freighter.app/) |
-| **xBull** | [xbull.app](https://xbull.app/) |
-| **Albedo** | [albedo.link](https://albedo.link/) |
-| **Rabet** | [rabet.io](https://rabet.io/) |
-| **LOBSTR** | [lobstr.co](https://lobstr.co/) |
+| **xBull**     | [xbull.app](https://xbull.app/)             |
+| **Albedo**    | [albedo.link](https://albedo.link/)         |
+| **Rabet**     | [rabet.io](https://rabet.io/)               |
+| **LOBSTR**    | [lobstr.co](https://lobstr.co/)             |
 
 ### Connecting a Wallet
 
@@ -274,11 +272,13 @@ soroban contract deploy \
 The frontend interacts with the contract via `ContractService`:
 
 **Read Operations:**
+
 - `get_assets()` — Fetch supported assets
 - `get_swap_estimate()` — Get swap quote from contract
 - `get_balance()` — Check contract balance for an asset
 
 **Write Operations:**
+
 - `swap()` — Execute a token swap with slippage protection
 - `add_asset()` — Admin: add a new supported asset
 - `pause()` / `unpause()` — Admin: emergency pause controls
@@ -301,6 +301,7 @@ Preparing → Awaiting Wallet Approval → Signing → Submitting → Pending �
 ```
 
 Status badges are displayed with color-coded indicators:
+
 - 🟡 **Pending states** — amber/yellow pulsing dot
 - 🟢 **Confirmed** — green dot
 - 🔴 **Failed/Rejected** — red dot
@@ -323,14 +324,14 @@ Status badges are displayed with color-coded indicators:
 
 The application explicitly handles these error scenarios:
 
-| Error | Display | Recovery |
-|-------|---------|----------|
-| Wallet not installed | Installation guide + link | Install wallet, retry |
-| Wallet rejected request | User cancelled message | Dismiss, retry |
-| Insufficient balance | Current vs required balance | Add funds, retry |
-| Unsupported network | Network mismatch warning | Switch network |
-| Timeout | Transaction timeout notice | Retry transaction |
-| Contract failure | Friendly error message | Dismiss, retry |
+| Error                   | Display                     | Recovery              |
+| ----------------------- | --------------------------- | --------------------- |
+| Wallet not installed    | Installation guide + link   | Install wallet, retry |
+| Wallet rejected request | User cancelled message      | Dismiss, retry        |
+| Insufficient balance    | Current vs required balance | Add funds, retry      |
+| Unsupported network     | Network mismatch warning    | Switch network        |
+| Timeout                 | Transaction timeout notice  | Retry transaction     |
+| Contract failure        | Friendly error message      | Dismiss, retry        |
 
 ---
 
@@ -351,6 +352,7 @@ MIT © 2026 OrbitSwap
 Built for the **Rise In Stellar Builder Challenge – Level 2 (Yellow Belt)**.
 
 Built with:
+
 - [Stellar](https://stellar.org/) — Decentralized blockchain network
 - [Soroban](https://soroban.stellar.org/) — Smart contract platform
 - [StellarWalletsKit](https://github.com/Creit-Tech/Stellar-Wallets-Kit) — Multi-wallet integration
