@@ -5,9 +5,7 @@ export function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orbit-purple to-orbit-cyan" />
-            <span className="text-sm font-semibold text-gray-400">
-              OrbitSwap
-            </span>
+            <span className="text-sm font-semibold text-gray-400">OrbitSwap</span>
           </div>
 
           <div className="flex items-center gap-6 text-sm text-gray-500">
@@ -37,9 +35,7 @@ export function Footer() {
             </a>
           </div>
 
-          <p className="text-sm text-gray-600">
-            Built on Stellar · {new Date().getFullYear()}
-          </p>
+          <p className="text-sm text-gray-600">Built on Stellar · {new Date().getFullYear()}</p>
         </div>
       </div>
     </footer>

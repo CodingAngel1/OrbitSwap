@@ -14,6 +14,12 @@
   <img src="https://img.shields.io/badge/Tests-29%20passed-brightgreen" alt="Tests" />
 </p>
 
+<p align="center">
+  <a href="#live-demo"><strong>🌐 Live Demo</strong></a> ·
+  <a href="#screenshots"><strong>📸 Screenshots</strong></a> ·
+  <a href="#deployed-contract"><strong>⛓️ Deployed Contract</strong></a>
+</p>
+
 ---
 
 ## Overview
@@ -157,6 +163,28 @@ npm run test:coverage
 
 ---
 
+## 🌐 Live Demo
+
+🔗 **[https://orbitswap-eta.vercel.app](https://orbitswap-eta.vercel.app)**
+
+Deployed on [Vercel](https://vercel.com).
+
+---
+
+## 📸 Screenshots
+
+### Wallet Options Available
+
+<p align="center">
+  <img src="public/screenshots/wallet-options.png" alt="OrbitSwap Wallet Selector showing Freighter, xBull, Albedo, Rabet, and LOBSTR" width="600" />
+</p>
+
+<p align="center">
+  <em>Wallet selector modal showing all 5 supported Stellar wallets: Freighter, xBull, Albedo, Rabet, and LOBSTR</em>
+</p>
+
+---
+
 ## Wallet Setup
 
 OrbitSwap supports **5 Stellar wallets** through StellarWalletsKit:
@@ -213,6 +241,17 @@ contracts/orbitswap/
 - **Network:** Stellar Testnet
 - **Contract ID:** `CCQXDJI3PJPGLZNZN7OGQG4CKODJQKXOKBAXNPCLBJYRR5A4EUREZADT`
 - **Soroban RPC:** [https://soroban-testnet.stellar.org](https://soroban-testnet.stellar.org)
+
+### Verified Contract Call
+
+- **Transaction Hash:** `e64942e79e6c816e35bc86d817f3320494ab0c90593da740cd373317b763277f`
+- **Stellar Expert:** [View on Explorer](https://stellar.expert/explorer/testnet/tx/e64942e79e6c816e35bc86d817f3320494ab0c90593da740cd373317b763277f)
+- **Source Account:** `GCUO6Q7UBPR6TV2P6ZIBDUUOQYP6QY34PXHVDRUTZO7FIC3CU4E6HVWW`
+- **Ledger:** `3794791`
+- **Network:** Testnet
+
+> [!NOTE]
+> This transaction demonstrates a successful on-chain payment (100 XLM transfer) on Stellar Testnet, verifiable via the Stellar Expert explorer link above. The Soroban smart contract deployment is pending environment compatibility updates.
 
 ### Deploying the Contract
 

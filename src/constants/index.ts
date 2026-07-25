@@ -5,8 +5,7 @@ export const APP_DESCRIPTION = 'Fast, seamless token swaps powered by Stellar';
 export const APP_URL = import.meta.env.VITE_APP_URL || 'http://localhost:3000';
 
 export const STELLAR_NETWORK = (import.meta.env.VITE_STELLAR_NETWORK || 'TESTNET') as
-  | 'TESTNET'
-  | 'PUBLIC';
+  'TESTNET' | 'PUBLIC';
 export const STELLAR_NETWORK_PASSPHRASE =
   STELLAR_NETWORK === 'PUBLIC' ? Networks.PUBLIC : Networks.TESTNET;
 
@@ -30,13 +29,7 @@ export const STELLAR_EXPERT_URL =
     ? 'https://stellar.expert/explorer/public'
     : 'https://stellar.expert/explorer/testnet';
 
-export const SUPPORTED_WALLETS = [
-  'xbull',
-  'freighter',
-  'albedo',
-  'rabet',
-  'lobstr',
-] as const;
+export const SUPPORTED_WALLETS = ['xbull', 'freighter', 'albedo', 'rabet', 'lobstr'] as const;
 
 export type SupportedWalletId = (typeof SUPPORTED_WALLETS)[number];
 

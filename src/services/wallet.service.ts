@@ -21,8 +21,6 @@ const WALLET_ID_MAP: Record<SupportedWalletId, string> = {
   lobstr: LOBSTR_ID,
 };
 
-
-
 const STORAGE_KEY = 'orbitswap_wallet';
 
 export class WalletService {
@@ -32,7 +30,9 @@ export class WalletService {
   static initialize(): void {
     this.kit = new StellarWalletsKit({
       network: STELLAR_NETWORK === 'PUBLIC' ? WalletNetwork.PUBLIC : WalletNetwork.TESTNET,
-      selectedWalletId: this.getStoredWalletId() ? WALLET_ID_MAP[this.getStoredWalletId()!] : FREIGHTER_ID,
+      selectedWalletId: this.getStoredWalletId()
+        ? WALLET_ID_MAP[this.getStoredWalletId()!]
+        : FREIGHTER_ID,
       modules: allowAllModules(),
     });
   }
@@ -221,16 +221,24 @@ export class WalletService {
 
   static isWalletInstalled(walletId: SupportedWalletId): boolean {
     if (walletId === 'freighter') {
-      return typeof window !== 'undefined' && !!(window as unknown as Record<string, unknown>).freighter;
+      return (
+        typeof window !== 'undefined' && !!(window as unknown as Record<string, unknown>).freighter
+      );
     }
     if (walletId === 'xbull') {
-      return typeof window !== 'undefined' && !!(window as unknown as Record<string, unknown>).xBullSDK;
+      return (
+        typeof window !== 'undefined' && !!(window as unknown as Record<string, unknown>).xBullSDK
+      );
     }
     if (walletId === 'albedo') {
-      return typeof window !== 'undefined' && !!(window as unknown as Record<string, unknown>).albedo;
+      return (
+        typeof window !== 'undefined' && !!(window as unknown as Record<string, unknown>).albedo
+      );
     }
     if (walletId === 'rabet') {
-      return typeof window !== 'undefined' && !!(window as unknown as Record<string, unknown>).rabet;
+      return (
+        typeof window !== 'undefined' && !!(window as unknown as Record<string, unknown>).rabet
+      );
     }
     if (walletId === 'lobstr') {
       return true;

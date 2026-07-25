@@ -117,7 +117,9 @@ export function AssetSelector({
                     <div>
                       <p className="text-sm font-medium">{asset.code}</p>
                       <p className="text-xs text-gray-500 truncate max-w-[150px]">
-                        {asset.type === 'native' ? 'Stellar Native' : asset.issuer.slice(0, 10) + '...'}
+                        {asset.type === 'native'
+                          ? 'Stellar Native'
+                          : asset.issuer.slice(0, 10) + '...'}
                       </p>
                     </div>
                   </button>

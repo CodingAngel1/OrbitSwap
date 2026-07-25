@@ -17,28 +17,58 @@ export function Hero() {
         </h1>
 
         <p className="max-w-2xl mx-auto text-lg text-gray-400 mb-8 animate-slide-up">
-          Swap tokens instantly on the Stellar DEX. Connect your wallet, choose your assets,
-          and execute trades with near-zero fees and lightning-fast settlement.
+          Swap tokens instantly on the Stellar DEX. Connect your wallet, choose your assets, and
+          execute trades with near-zero fees and lightning-fast settlement.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up">
           <div className="flex items-center gap-2 text-sm text-gray-500">
-            <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            <svg
+              className="w-4 h-4 text-emerald-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
             </svg>
             3-5 second settlement
           </div>
           <div className="hidden sm:block w-1 h-1 rounded-full bg-gray-700" />
           <div className="flex items-center gap-2 text-sm text-gray-500">
-            <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            <svg
+              className="w-4 h-4 text-emerald-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
             </svg>
             Near-zero fees
           </div>
           <div className="hidden sm:block w-1 h-1 rounded-full bg-gray-700" />
           <div className="flex items-center gap-2 text-sm text-gray-500">
-            <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            <svg
+              className="w-4 h-4 text-emerald-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
             </svg>
             Multi-wallet support
           </div>

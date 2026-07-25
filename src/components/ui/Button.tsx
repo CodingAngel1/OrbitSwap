@@ -11,19 +11,19 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = 'primary', size = 'md', loading, icon, children, className, disabled, ...props }, ref) => {
+  (
+    { variant = 'primary', size = 'md', loading, icon, children, className, disabled, ...props },
+    ref,
+  ) => {
     const baseStyles =
       'inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-stellar-500/50 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100';
 
     const variants = {
       primary:
         'bg-gradient-to-r from-stellar-600 to-stellar-500 hover:from-stellar-500 hover:to-stellar-400 text-white shadow-lg shadow-stellar-500/20',
-      secondary:
-        'bg-orbit-card border border-orbit-border hover:border-stellar-500/50 text-white',
-      ghost:
-        'text-gray-400 hover:text-white hover:bg-white/5',
-      danger:
-        'bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20',
+      secondary: 'bg-orbit-card border border-orbit-border hover:border-stellar-500/50 text-white',
+      ghost: 'text-gray-400 hover:text-white hover:bg-white/5',
+      danger: 'bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20',
     };
 
     const sizes = {
@@ -46,7 +46,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             fill="none"
             viewBox="0 0 24 24"
           >
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            />
             <path
               className="opacity-75"
               fill="currentColor"

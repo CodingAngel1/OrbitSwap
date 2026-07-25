@@ -9,8 +9,18 @@ export function TransactionHistory() {
     return (
       <div className="glass-card p-8 text-center">
         <div className="w-12 h-12 rounded-full bg-stellar-500/10 flex items-center justify-center mx-auto mb-3">
-          <svg className="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          <svg
+            className="w-6 h-6 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
           </svg>
         </div>
         <p className="text-sm text-gray-400">No transactions yet</p>
@@ -33,14 +43,34 @@ export function TransactionHistory() {
             <div className="flex-shrink-0">
               {tx.type === 'swap' ? (
                 <div className="w-8 h-8 rounded-full bg-stellar-500/10 flex items-center justify-center">
-                  <svg className="w-4 h-4 text-stellar-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                  <svg
+                    className="w-4 h-4 text-stellar-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
+                    />
                   </svg>
                 </div>
               ) : (
                 <div className="w-8 h-8 rounded-full bg-orbit-purple/10 flex items-center justify-center">
-                  <svg className="w-4 h-4 text-orbit-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  <svg
+                    className="w-4 h-4 text-orbit-purple"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    />
                   </svg>
                 </div>
               )}

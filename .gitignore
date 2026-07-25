@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Vercel
+.vercel
+
+# Rust build artifacts
+contracts/orbitswap/target/
+
+# Lock files (generated)
+package-lock.json
+contracts/orbitswap/Cargo.lock
+
+# Environment
+.env
+.env.local

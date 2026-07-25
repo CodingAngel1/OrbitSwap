@@ -44,8 +44,6 @@ export function WalletSelector({ isOpen, onClose }: WalletSelectorProps) {
     }
   };
 
-
-
   return (
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center p-4"
@@ -53,10 +51,7 @@ export function WalletSelector({ isOpen, onClose }: WalletSelectorProps) {
       aria-modal="true"
       aria-label="Connect Wallet"
     >
-      <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-        onClick={onClose}
-      />
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
 
       <div className="relative w-full max-w-md bg-orbit-dark border border-orbit-border rounded-2xl shadow-2xl animate-slide-up">
         <div className="flex items-center justify-between p-6 border-b border-orbit-border">
@@ -67,7 +62,12 @@ export function WalletSelector({ isOpen, onClose }: WalletSelectorProps) {
             aria-label="Close wallet selector"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -76,14 +76,22 @@ export function WalletSelector({ isOpen, onClose }: WalletSelectorProps) {
           {error && (
             <div className="mb-4 p-4 rounded-xl bg-red-500/10 border border-red-500/20 animate-fade-in">
               <div className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg
+                  className="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
                 </svg>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-red-400">{error.message}</p>
-                  {error.details && (
-                    <p className="text-xs text-red-400/70 mt-1">{error.details}</p>
-                  )}
+                  {error.details && <p className="text-xs text-red-400/70 mt-1">{error.details}</p>}
                   {error.code === 'WALLET_NOT_INSTALLED' && error.recoverable && (
                     <div className="mt-2 space-y-2">
                       <p className="text-xs text-gray-400">
@@ -92,7 +100,9 @@ export function WalletSelector({ isOpen, onClose }: WalletSelectorProps) {
                       <button
                         onClick={() => {
                           const wallet = wallets.find(
-                            (w) => w.name.toLowerCase() === error.message.toLowerCase().replace('wallet not found', '').trim(),
+                            (w) =>
+                              w.name.toLowerCase() ===
+                              error.message.toLowerCase().replace('wallet not found', '').trim(),
                           );
                           if (wallet) window.open(wallet.url, '_blank');
                         }}
@@ -128,7 +138,12 @@ export function WalletSelector({ isOpen, onClose }: WalletSelectorProps) {
               aria-label={`Connect with ${wallet.name}`}
             >
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-stellar-500/20 to-orbit-purple/20 flex items-center justify-center flex-shrink-0">
-                <svg className="w-5 h-5 text-stellar-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg
+                  className="w-5 h-5 text-stellar-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -163,12 +178,32 @@ export function WalletSelector({ isOpen, onClose }: WalletSelectorProps) {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
               {isConnecting && (
-                <svg className="animate-spin h-4 w-4 text-stellar-400" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                <svg
+                  className="animate-spin h-4 w-4 text-stellar-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                  />
                 </svg>
               )}
             </button>

@@ -1,20 +1,13 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useCallback,
-  useState,
-} from 'react';
+import { createContext, useContext, useEffect, useRef, useCallback, useState } from 'react';
 import type { ReactNode } from 'react';
 import { ContractService } from '@/services';
 import { useAppStore } from '@/store';
 import type { SwapRequest, ContractEvent } from '@/types';
 
 interface ContractContextValue {
-  getSupportedAssets: (signerPublicKey: string) => Promise<
-    Array<{ code: string; issuer: string; balance: string }>
-  >;
+  getSupportedAssets: (
+    signerPublicKey: string,
+  ) => Promise<Array<{ code: string; issuer: string; balance: string }>>;
   getSwapEstimate: (
     signerPublicKey: string,
     inputAsset: { code: string; issuer: string },
@@ -73,18 +66,12 @@ export function ContractProvider({ children }: { children: ReactNode }) {
   );
 
   const submitSwap = useCallback(
-    (
-      signerPublicKey: string,
-      swapRequest: SwapRequest,
-      signTx: (xdr: string) => Promise<string>,
-    ) => ContractService.submitSwap(signerPublicKey, swapRequest, signTx),
+    (signerPublicKey: string, swapRequest: SwapRequest, signTx: (xdr: string) => Promise<string>) =>
+      ContractService.submitSwap(signerPublicKey, swapRequest, signTx),
     [],
   );
 
-  const getSwapStatus = useCallback(
-    (txHash: string) => ContractService.getSwapStatus(txHash),
-    [],
-  );
+  const getSwapStatus = useCallback((txHash: string) => ContractService.getSwapStatus(txHash), []);
 
   return (
     <ContractContext.Provider

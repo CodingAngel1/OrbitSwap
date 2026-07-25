@@ -62,12 +62,7 @@ export function useSwapQuote(
       clearTimeout(debounceRef.current);
     }
 
-    if (
-      !inputAsset ||
-      !outputAsset ||
-      !inputAmount ||
-      parseFloat(inputAmount) <= 0
-    ) {
+    if (!inputAsset || !outputAsset || !inputAmount || parseFloat(inputAmount) <= 0) {
       setQuote(null);
       setLoading(false);
       return;
@@ -77,11 +72,7 @@ export function useSwapQuote(
 
     debounceRef.current = setTimeout(async () => {
       try {
-        const result = await StellarService.getSwapQuote(
-          inputAsset,
-          outputAsset,
-          inputAmount,
-        );
+        const result = await StellarService.getSwapQuote(inputAsset, outputAsset, inputAmount);
         setQuote(result);
         setError(null);
       } catch (err) {

@@ -6,10 +6,7 @@ interface StatusBadgeProps {
   className?: string;
 }
 
-const statusConfig: Record<
-  TransactionStatus,
-  { label: string; className: string; dot: string }
-> = {
+const statusConfig: Record<TransactionStatus, { label: string; className: string; dot: string }> = {
   preparing: {
     label: 'Preparing',
     className: 'bg-gray-500/10 text-gray-400 border-gray-500/20',

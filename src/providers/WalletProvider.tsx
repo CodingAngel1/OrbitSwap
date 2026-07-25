@@ -1,11 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useCallback,
-  useRef,
-  useState,
-} from 'react';
+import { createContext, useContext, useEffect, useCallback, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import type { WalletState, WalletError } from '@/types';
 import type { SupportedWalletId } from '@/constants';

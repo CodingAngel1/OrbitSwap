@@ -6,4 +6,5 @@
 //
 // Interact with the contract via ContractService in services/contract.service.ts
 
-export const DEPLOYED_CONTRACT_ID = import.meta.env.VITE_CONTRACT_ID || 'CCQXDJI3PJPGLZNZN7OGQG4CKODJQKXOKBAXNPCLBJYRR5A4EUREZADT';
+export const DEPLOYED_CONTRACT_ID =
+  import.meta.env.VITE_CONTRACT_ID || 'CCQXDJI3PJPGLZNZN7OGQG4CKODJQKXOKBAXNPCLBJYRR5A4EUREZADT';

@@ -16,9 +16,7 @@ export class StellarService {
     this.horizon = new Horizon.Server('https://horizon-testnet.stellar.org');
   }
 
-  static async fetchAccountBalances(
-    publicKey: string,
-  ): Promise<
+  static async fetchAccountBalances(publicKey: string): Promise<
     Array<{
       asset: Asset;
       balance: string;
@@ -108,7 +106,8 @@ export class StellarService {
       for (const ask of asks) {
         if (remainingInput <= 0) break;
         const askAmount = parseFloat(ask.amount);
-        const askPrice = parseFloat(ask.price) || parseFloat(ask.price_r?.n) / parseFloat(ask.price_r?.d) || 0;
+        const askPrice =
+          parseFloat(ask.price) || parseFloat(ask.price_r?.n) / parseFloat(ask.price_r?.d) || 0;
 
         if (askAmount >= remainingInput) {
           accumulatedOutput += remainingInput * askPrice;
@@ -120,8 +119,7 @@ export class StellarService {
       }
 
       const estimatedOutput = accumulatedOutput.toFixed(7);
-      const exchangeRate =
-        inputAmount > 0 ? (accumulatedOutput / inputAmount).toFixed(7) : '0';
+      const exchangeRate = inputAmount > 0 ? (accumulatedOutput / inputAmount).toFixed(7) : '0';
 
       return {
         inputAsset,
@@ -141,10 +139,7 @@ export class StellarService {
     }
   }
 
-  static async executeSwap(
-    swapRequest: SwapRequest,
-    sourceKeypair: Keypair,
-  ): Promise<SwapResult> {
+  static async executeSwap(swapRequest: SwapRequest, sourceKeypair: Keypair): Promise<SwapResult> {
     try {
       const sourceAccount = await this.horizon.loadAccount(sourceKeypair.publicKey());
 
@@ -211,9 +206,7 @@ export class StellarService {
   static async fetchMarketInfo(assetCode: string, assetIssuer: string): Promise<MarketInfo> {
     try {
       const asset =
-        assetCode === 'XLM'
-          ? StellarAsset.native()
-          : new StellarAsset(assetCode, assetIssuer);
+        assetCode === 'XLM' ? StellarAsset.native() : new StellarAsset(assetCode, assetIssuer);
 
       const trades = await this.horizon
         .trades()

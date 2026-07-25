@@ -50,9 +50,7 @@ export const useAppStore = create<AppState>((set) => ({
 
   updateTransaction: (hash, updates) =>
     set((state) => ({
-      transactions: state.transactions.map((t) =>
-        t.hash === hash ? { ...t, ...updates } : t,
-      ),
+      transactions: state.transactions.map((t) => (t.hash === hash ? { ...t, ...updates } : t)),
     })),
 
   addNotification: (notification) =>
@@ -62,9 +60,7 @@ export const useAppStore = create<AppState>((set) => ({
 
   markNotificationRead: (id) =>
     set((state) => ({
-      notifications: state.notifications.map((n) =>
-        n.id === id ? { ...n, read: true } : n,
-      ),
+      notifications: state.notifications.map((n) => (n.id === id ? { ...n, read: true } : n)),
     })),
 
   clearNotifications: () => set({ notifications: [] }),

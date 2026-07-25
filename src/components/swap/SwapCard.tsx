@@ -10,9 +10,21 @@ import { StellarService } from '@/services';
 
 const DEFAULT_ASSETS: Asset[] = [
   { code: 'XLM', issuer: '', type: 'native' },
-  { code: 'USDC', issuer: 'GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5', type: 'credit_alphanum4' },
-  { code: 'SRT', issuer: 'GCDNJUBQSX7AJWLJACMJ7I4BC3Z47BQUTMHEICZLE6MU4KQBRYG5JY6B', type: 'credit_alphanum4' },
-  { code: 'yXLM', issuer: 'GARDNV3Q7YGT4AKSDF25LT32YSCCW4EV22Y2TV3I2PU2MMXJTEDL5T55', type: 'credit_alphanum4' },
+  {
+    code: 'USDC',
+    issuer: 'GBBD47IF6LWK7P7MDEVSCWR7DPUWV3NY3DTQEVFL4NAT4AQH3ZLLFLA5',
+    type: 'credit_alphanum4',
+  },
+  {
+    code: 'SRT',
+    issuer: 'GCDNJUBQSX7AJWLJACMJ7I4BC3Z47BQUTMHEICZLE6MU4KQBRYG5JY6B',
+    type: 'credit_alphanum4',
+  },
+  {
+    code: 'yXLM',
+    issuer: 'GARDNV3Q7YGT4AKSDF25LT32YSCCW4EV22Y2TV3I2PU2MMXJTEDL5T55',
+    type: 'credit_alphanum4',
+  },
 ];
 
 export function SwapCard() {
@@ -49,10 +61,7 @@ export function SwapCard() {
     setShowPreview(false);
 
     try {
-      const minOutput = (
-        parseFloat(quote.estimatedOutput) *
-        (1 - slippage / 100)
-      ).toFixed(7);
+      const minOutput = (parseFloat(quote.estimatedOutput) * (1 - slippage / 100)).toFixed(7);
 
       await StellarService.executeSwap(
         {
@@ -64,7 +73,9 @@ export function SwapCard() {
         },
         null as unknown as import('@stellar/stellar-sdk').Keypair,
       ).catch((_err: unknown) => {
-        throw new Error('Swap execution failed. Please ensure your wallet supports transaction signing.');
+        throw new Error(
+          'Swap execution failed. Please ensure your wallet supports transaction signing.',
+        );
       });
 
       toast.success(
@@ -74,7 +85,10 @@ export function SwapCard() {
       const message = err instanceof Error ? err.message : 'Swap failed';
       if (message.toLowerCase().includes('insufficient')) {
         toast.error(`Insufficient balance. You need more ${inputAsset.code}.`);
-      } else if (message.toLowerCase().includes('rejected') || message.toLowerCase().includes('cancelled')) {
+      } else if (
+        message.toLowerCase().includes('rejected') ||
+        message.toLowerCase().includes('cancelled')
+      ) {
         toast.error('Transaction was rejected. You can try again.');
       } else {
         toast.error(message);
@@ -90,8 +104,18 @@ export function SwapCard() {
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-lg font-bold text-white">Swap</h2>
           <div className="flex items-center gap-2">
-            <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            <svg
+              className="w-4 h-4 text-gray-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+              />
             </svg>
             <button
               onClick={() => {
@@ -105,7 +129,10 @@ export function SwapCard() {
           </div>
         </div>
 
-        <div id="slippage-settings" className="hidden mb-4 p-3 rounded-xl bg-orbit-darker border border-orbit-border">
+        <div
+          id="slippage-settings"
+          className="hidden mb-4 p-3 rounded-xl bg-orbit-darker border border-orbit-border"
+        >
           <div className="flex items-center gap-2">
             <span className="text-xs text-gray-400">Slippage Tolerance:</span>
             {[0.1, 0.5, 1.0].map((v) => (
@@ -133,9 +160,7 @@ export function SwapCard() {
               label="You Pay"
               excludeAsset={outputAsset}
             />
-            {errors.inputAsset && (
-              <p className="text-xs text-red-400 mt-1">{errors.inputAsset}</p>
-            )}
+            {errors.inputAsset && <p className="text-xs text-red-400 mt-1">{errors.inputAsset}</p>}
           </div>
 
           <div className="relative">
@@ -145,8 +170,18 @@ export function SwapCard() {
                 className="w-8 h-8 rounded-full bg-orbit-card border border-orbit-border hover:border-stellar-500/50 flex items-center justify-center transition-all hover:rotate-180 duration-300"
                 aria-label="Swap assets direction"
               >
-                <svg className="w-4 h-4 text-stellar-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                <svg
+                  className="w-4 h-4 text-stellar-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
+                  />
                 </svg>
               </button>
             </div>
@@ -193,9 +228,7 @@ export function SwapCard() {
             {errors.inputAmount && (
               <p className="text-xs text-red-400 mt-1">{errors.inputAmount}</p>
             )}
-            {errors.balance && (
-              <p className="text-xs text-red-400 mt-1">{errors.balance}</p>
-            )}
+            {errors.balance && <p className="text-xs text-red-400 mt-1">{errors.balance}</p>}
           </div>
 
           {quoteLoading && inputAmount && inputAsset && outputAsset && (
@@ -210,7 +243,8 @@ export function SwapCard() {
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-400">Rate</span>
                 <span className="text-white font-mono">
-                  1 {quote.inputAsset.code} ≈ {parseFloat(quote.exchangeRate).toFixed(6)} {quote.outputAsset.code}
+                  1 {quote.inputAsset.code} ≈ {parseFloat(quote.exchangeRate).toFixed(6)}{' '}
+                  {quote.outputAsset.code}
                 </span>
               </div>
               <div className="flex items-center justify-between text-sm">
@@ -230,15 +264,15 @@ export function SwapCard() {
             </div>
           )}
 
-          {errors.wallet && (
-            <p className="text-xs text-amber-400 text-center">{errors.wallet}</p>
-          )}
+          {errors.wallet && <p className="text-xs text-amber-400 text-center">{errors.wallet}</p>}
 
           <Button
             variant="primary"
             size="lg"
             className="w-full"
-            disabled={!inputAsset || !outputAsset || !inputAmount || submitting || !wallet.connected}
+            disabled={
+              !inputAsset || !outputAsset || !inputAmount || submitting || !wallet.connected
+            }
             loading={submitting}
             onClick={handleSwap}
           >
@@ -275,8 +309,7 @@ interface SwapPreviewProps {
 }
 
 function SwapPreview({ quote, slippage, onConfirm, onCancel }: SwapPreviewProps) {
-  const minReceived =
-    parseFloat(quote.estimatedOutput) * (1 - slippage / 100);
+  const minReceived = parseFloat(quote.estimatedOutput) * (1 - slippage / 100);
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
@@ -300,7 +333,8 @@ function SwapPreview({ quote, slippage, onConfirm, onCancel }: SwapPreviewProps)
           <div className="flex items-center justify-between">
             <span className="text-sm text-gray-400">Rate</span>
             <span className="text-sm text-white font-mono">
-              1 {quote.inputAsset.code} ≈ {parseFloat(quote.exchangeRate).toFixed(6)} {quote.outputAsset.code}
+              1 {quote.inputAsset.code} ≈ {parseFloat(quote.exchangeRate).toFixed(6)}{' '}
+              {quote.outputAsset.code}
             </span>
           </div>
           <div className="flex items-center justify-between">
