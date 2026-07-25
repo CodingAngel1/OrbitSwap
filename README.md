@@ -7,7 +7,7 @@
 <h3 align="center">Fast, seamless token swaps powered by Stellar</h3>
 
 <p align="center">
-  <img src="https://github.com/CodingAngel1/OrbitSwap/actions/workflows/ci.yml/badge.svg" alt="CI" />
+  <a href="https://github.com/CodingAngel1/OrbitSwap/actions/workflows/ci.yml"><img src="https://github.com/CodingAngel1/OrbitSwap/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <img src="https://img.shields.io/badge/Stellar-Testnet-7c3aed?style=flat&logo=stellar" alt="Stellar Testnet" />
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License" />
   <img src="https://img.shields.io/badge/TypeScript-5.5-blue" alt="TypeScript" />
