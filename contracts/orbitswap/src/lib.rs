@@ -3,8 +3,10 @@
 #[cfg(test)]
 mod test;
 
+use core::fmt::Write;
+
 use soroban_sdk::{
-    contract, contractimpl, contracttype, symbol_short, vec, Address, Env, Map, String, Vec, IntoVal, BytesN
+    contract, contractimpl, contracttype, symbol_short, vec, Address, Env, String, Vec,
 };
 
 #[derive(Clone, Debug, PartialEq)]
@@ -36,6 +38,23 @@ pub struct SwapExecutedEvent {
 
 #[contract]
 pub struct OrbitSwap;
+
+struct StackString<'a> {
+    buf: &'a mut [u8],
+    len: usize,
+}
+
+impl<'a> Write for StackString<'a> {
+    fn write_str(&mut self, s: &str) -> core::fmt::Result {
+        let bytes = s.as_bytes();
+        if self.len + bytes.len() > self.buf.len() {
+            return Err(core::fmt::Error);
+        }
+        self.buf[self.len..self.len + bytes.len()].copy_from_slice(bytes);
+        self.len += bytes.len();
+        Ok(())
+    }
+}
 
 #[contractimpl]
 impl OrbitSwap {
@@ -94,16 +113,18 @@ impl OrbitSwap {
         _output_issuer: String,
         amount: String,
     ) -> SwapEstimate {
-        let amount_f: f64 = Self::parse_amount(&amount);
+        let amount_i: i128 = Self::parse_amount(&amount);
 
-        let rate: f64 = 1.0;
-        let output = amount_f * rate;
-        let fee = amount_f * 0.001;
+        // 1.0 rate in 7-decimal fixed-point = 10_000_000
+        let rate: i128 = 10_000_000;
+        let output = (amount_i * rate) / 10_000_000;
+        // 0.001 fee = 10_000 in 7-decimal fixed-point
+        let fee = (amount_i * 10_000) / 10_000_000;
 
         SwapEstimate {
-            output: Self::format_amount(output),
-            fee: Self::format_amount(fee),
-            rate: Self::format_amount(rate),
+            output: Self::format_amount(&env, output),
+            fee: Self::format_amount(&env, fee),
+            rate: Self::format_amount(&env, rate),
         }
     }
 
@@ -129,11 +150,11 @@ impl OrbitSwap {
             input_amount.clone(),
         );
 
-        let min_output_f: f64 = Self::parse_amount(&min_output);
-        let estimated_output_f: f64 = Self::parse_amount(&estimate.output);
+        let min_output_i: i128 = Self::parse_amount(&min_output);
+        let estimated_output_i: i128 = Self::parse_amount(&estimate.output);
 
-        if estimated_output_f < min_output_f {
-            panic!("Slippage exceeded: expected at least {} but got {}", min_output, estimate.output);
+        if estimated_output_i < min_output_i {
+            panic!("Slippage exceeded");
         }
 
         let output_amount = estimate.output.clone();
@@ -158,7 +179,7 @@ impl OrbitSwap {
 
     pub fn get_balance(env: Env, _asset_code: String) -> String {
         let balance: i128 = 0;
-        Self::format_amount(balance as f64)
+        Self::format_amount(&env, balance)
     }
 
     pub fn pause(env: Env, admin: Address) {
@@ -202,36 +223,54 @@ impl OrbitSwap {
         }
     }
 
-    fn parse_amount(amount: &String) -> f64 {
-        let mut s = String::new(amount.env());
-        s.append(amount);
-        let bytes = s.into_bytes();
-        let mut val: f64 = 0.0;
-        let mut decimal: f64 = 0.1;
+    fn parse_amount(amount: &String) -> i128 {
+        let mut bytes = [0u8; 64];
+        let len = (amount.len() as usize).min(bytes.len());
+        amount.copy_into_slice(&mut bytes[..len]);
+
+        let mut val: i128 = 0;
+        let mut decimals = 0;
         let mut past_decimal = false;
 
-        for i in 0..bytes.len() {
-            let b = bytes.get(i).unwrap();
-            if b == 46 {
+        for i in 0..len {
+            let b = bytes[i];
+            if b == b'.' {
                 past_decimal = true;
                 continue;
             }
-            let digit = (b - 48) as f64;
-            if past_decimal {
-                val += digit * decimal;
-                decimal *= 0.1;
-            } else {
-                val = val * 10.0 + digit;
+            if b >= b'0' && b <= b'9' {
+                let digit = (b - b'0') as i128;
+                if past_decimal {
+                    if decimals < 7 {
+                        val = val * 10 + digit;
+                        decimals += 1;
+                    }
+                } else {
+                    val = val * 10 + digit;
+                }
             }
+        }
+
+        // Pad out to 7 fractional digits
+        while decimals < 7 {
+            val *= 10;
+            decimals += 1;
         }
         val
     }
 
-    fn format_amount(amount: f64) -> String {
-        let as_string: String = String::from_str(
-            &String::new(&Env::default()),
-            &format!("{:.7}", amount),
-        );
-        as_string
+    fn format_amount(env: &Env, amount: i128) -> String {
+        let mut buf = [0u8; 64];
+        let mut stack_str = StackString {
+            buf: &mut buf,
+            len: 0,
+        };
+
+        let int_part = amount / 10_000_000;
+        let frac_part = (amount % 10_000_000).abs();
+
+        write!(&mut stack_str, "{}.{:07}", int_part, frac_part).unwrap();
+        let s = core::str::from_utf8(&stack_str.buf[..stack_str.len]).unwrap();
+        String::from_str(env, s)
     }
 }

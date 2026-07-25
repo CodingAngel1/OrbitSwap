@@ -239,19 +239,18 @@ contracts/orbitswap/
 ### Deployed Contract
 
 - **Network:** Stellar Testnet
-- **Contract ID:** `CCQXDJI3PJPGLZNZN7OGQG4CKODJQKXOKBAXNPCLBJYRR5A4EUREZADT`
+- **Contract ID:** `CDMFGNFKQOJ3IRFN7GYL2B6242TWQX3JXLUHUZB3CLK2HNUT7VLYMNVN`
 - **Soroban RPC:** [https://soroban-testnet.stellar.org](https://soroban-testnet.stellar.org)
+- **Deployer:** `GDQY77NYQ2A4RYCQ4PKD2BFC532ECYEKPFHPS24POUHG7L4KLDB74567`
 
 ### Verified Contract Call
 
-- **Transaction Hash:** `e64942e79e6c816e35bc86d817f3320494ab0c90593da740cd373317b763277f`
-- **Stellar Expert:** [View on Explorer](https://stellar.expert/explorer/testnet/tx/e64942e79e6c816e35bc86d817f3320494ab0c90593da740cd373317b763277f)
-- **Source Account:** `GCUO6Q7UBPR6TV2P6ZIBDUUOQYP6QY34PXHVDRUTZO7FIC3CU4E6HVWW`
-- **Ledger:** `3794791`
+- **Transaction Hash (init):** `8f582b3bd3a59c4ed777e7f74f3c6b01ee859129d7658bd3999cfc9928a4ef73`
+- **Stellar Expert:** [View on Explorer](https://stellar.expert/explorer/testnet/tx/8f582b3bd3a59c4ed777e7f74f3c6b01ee859129d7658bd3999cfc9928a4ef73)
 - **Network:** Testnet
+- **Function Called:** `init(admin: orbitswap-deployer)`
 
-> [!NOTE]
-> This transaction demonstrates a successful on-chain payment (100 XLM transfer) on Stellar Testnet, verifiable via the Stellar Expert explorer link above. The Soroban smart contract deployment is pending environment compatibility updates.
+This is a Soroban contract invocation (`init` function), fully verifiable on Stellar Explorer.
 
 ### Deploying the Contract
 
