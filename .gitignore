@@ -11,7 +11,6 @@ dist/
 contracts/orbitswap/target/
 
 # Lock files (generated)
-package-lock.json
 contracts/orbitswap/Cargo.lock
 
 # Environment
